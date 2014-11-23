@@ -82,15 +82,16 @@ exports.signout = function(req, res) {
  */
 exports.oauthCallback = function(strategy) {
 	return function(req, res, next) {
-		passport.authenticate(strategy, { scope: 'publish_actions', auth_type: 'rerequest' }, function(err, user, redirectURL) {
+		passport.authenticate(strategy, {scope: ['email', 'publish_actions']}, function(err, user, redirectURL) {
 			if (err || !user) {
 				return res.redirect('/#!/signin');
 			}
+
 			req.login(user, function(err) {
 				if (err) {
 					return res.redirect('/#!/signin');
 				}
-				console.log(redirectURL);
+
 				return res.redirect(redirectURL || '/');
 			});
 		})(req, res, next);

@@ -3,7 +3,8 @@
 var mongoose = require('mongoose'),
 	Post = mongoose.model('Post'),
 	errorHandler = require('../errors.server.controller'),
-	_ = require('lodash')
+	_ = require('lodash'),
+	FB = require('fb')
 ;
 
 /**
@@ -29,7 +30,18 @@ exports.create = function(req, res) {
 		message: 'Content is required to post'
 	});
 
-	var article = new Post(req.body);
+
+	var article = new Post(req.body),
+		accessToken = req.user.additionalProvidersData.facebook.accessToken
+	;
+
+	FB.setAccessToken(accessToken);
+	FB.apiAsync('me/feed', 'post', {
+		message: req.body.content
+	}).catch(function(data) {
+		console.log(data);
+	});
+
 	article.user = req.user;
 
 	article.save(function(err) {

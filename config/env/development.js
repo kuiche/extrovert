@@ -6,8 +6,8 @@ module.exports = {
 		title: 'Extrovert - Development Environment'
 	},
 	facebook: {
-		clientID: process.env.FACEBOOK_ID || '344535705707493',
-		clientSecret: process.env.FACEBOOK_SECRET || '8c01da2e7254ec437ca071e668f32f52',
+		clientID: process.env.FACEBOOK_ID || '348111802016550',
+		clientSecret: process.env.FACEBOOK_SECRET || '17cb565cb010e1cf70f07a0529e337aa',
 		callbackURL: '/auth/facebook/callback'
 	},
 	twitter: {

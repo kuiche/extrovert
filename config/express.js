@@ -21,11 +21,22 @@ var fs = require('fs'),
 	flash = require('connect-flash'),
 	config = require('./config'),
 	consolidate = require('consolidate'),
-	path = require('path');
+	path = require('path'),
+	ghost = require('ghost')
+;
 
 module.exports = function(db) {
 	// Initialize express app
 	var app = express();
+
+	// Setup ghost
+	ghost(
+	{
+		config: path.join(__dirname, 'ghost.js')
+	}
+	).then(function (ghostServer) {
+	    ghostServer.start();
+	});
 
 	// Globbing model files
 	config.getGlobbedFiles('./app/models/**/*.js').forEach(function(modelPath) {
