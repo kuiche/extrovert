@@ -29,15 +29,6 @@ module.exports = function(db) {
 	// Initialize express app
 	var app = express();
 
-	// Setup ghost
-	ghost(
-	{
-		config: path.join(__dirname, 'ghost.js')
-	}
-	).then(function (ghostServer) {
-	    ghostServer.start();
-	});
-
 	// Globbing model files
 	config.getGlobbedFiles('./app/models/**/*.js').forEach(function(modelPath) {
 		require(path.resolve(modelPath));
@@ -144,10 +135,22 @@ module.exports = function(db) {
 	});
 
 	// Assume 404 since no middleware responded
-	app.use(function(req, res) {
-		res.status(404).render('404', {
-			url: req.originalUrl,
-			error: 'Not Found'
+	// Setup ghost
+	ghost({
+		config: path.join(__dirname, 'ghost.js')
+	}).then(function (ghostServer) {
+		app.use(ghostServer.config.paths.subdir, ghostServer.rootApp);
+
+	    ghostServer.start(app);
+	})
+	// 404 MUST happen after everything. In this instance 
+	// it's neccessary to wrap in a promise to keep it AFTER Ghost 
+	.then(function(req, res) {
+		app.use(function(req, res) {
+			res.status(404).render('404', {
+				url: req.originalUrl,
+				error: 'Not Found'
+			});
 		});
 	});
 
