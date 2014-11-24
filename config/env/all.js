@@ -6,7 +6,7 @@ module.exports = {
 		description: 'Social media aggregation client',
 		keywords: 'Extrovert, Socal Media'
 	},
-	port: process.env.PORT || 3000,
+	port: process.env.OPENSHIFT_NODEJS_PORT || 3000,
 	templateEngine: 'swig',
 	sessionSecret: 'MEAN',
 	sessionCollection: 'sessions',
