@@ -134,7 +134,6 @@ module.exports = function(db) {
 		});
 	});
 
-	// Assume 404 since no middleware responded
 	// Setup ghost
 	ghost({
 		config: path.join(__dirname, 'ghost.js')

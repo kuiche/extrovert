@@ -294,10 +294,11 @@ hr {
 }
 
 input {
-    background-color: #070802;
-    border: 1px solid #D3D3D3;
+    color: #D3D3D3;
+    background-color: #121307;
+    border: 1px solid #A3A3A3;
     border-radius: 3px;
-    padding: 10px;
+    padding: 6px;
 }
 
 blockquote {
@@ -337,8 +338,7 @@ code, tt {
     font-family: Inconsolata, monospace, sans-serif;
     font-size: 0.85em;
     white-space: pre-wrap;
-    border: #E3EDF3 1px solid;
-    background: #070802;
+    background: #121307;
     border-radius: 2px;
     color: #FD971F;
 }
@@ -347,14 +347,13 @@ pre {
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     margin: 0 0 1.75em 0;
-    border: #E3EDF3 1px solid;
     width: 100%;
     padding: 10px;
     font-family: Inconsolata, monospace, sans-serif;
     font-size: 0.9em;
     white-space: pre;
     overflow: auto;
-    background: #070802;
+    background: #121307;
     border-radius: 3px;
 }
 
@@ -645,28 +644,6 @@ margin on the iframe, cause it breaks stuff. */
     background: none;
 }
 
-.main-nav.overlay a {
-    color: #fff;
-}
-
-.main-nav.overlay .back-button,
-.main-nav.overlay .subscribe-button {
-    border-color: rgba(255,255,255,0.6);
-}
-
-.main-nav.overlay a:hover {
-    color: #222;
-    border-color: #fff;
-    background: #fff;
-    transition: all 0.1s ease;
-}
-
-/* Add a border to the buttons on hover */
-.back-button:hover,
-.subscribe-button:hover {
-    color: #86C20E;
-}
-
 /* The details of your blog. Defined in ghost/settings/ */
 .page-title {
     margin: 10px 0 10px 0;
@@ -699,12 +676,6 @@ margin on the iframe, cause it breaks stuff. */
 
 .no-cover .page-description {
     color: rgba(0,0,0,0.5);
-}
-
-.no-cover .main-nav.overlay .back-button,
-.no-cover .main-nav.overlay .subscribe-button {
-    color: rgba(0,0,0,0.4);
-    border-color: rgba(0,0,0,0.3);
 }
 
 /* Add subtle load-in animation for content on the home page */
