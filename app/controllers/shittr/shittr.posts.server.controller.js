@@ -3,8 +3,8 @@
 var mongoose = require('mongoose'),
 	Post = mongoose.model('Post'),
 	errorHandler = require('../errors.server.controller'),
-	_ = require('lodash'),
-	FB = require('fb')
+    Postr = require('postr'),
+    PostrFB = require('postr-facebook')
 ;
 
 /**
@@ -30,27 +30,31 @@ exports.create = function(req, res) {
 		message: 'Content is required to post'
 	});
 
+    var article = new Post(req.body),
+        accessToken = req.user.additionalProvidersData.facebook.accessToken,
+        postr = new Postr({
+            schemas: [
+                new PostrFB({
+                    accessToken: accessToken
+                })
+            ]
+        })
+    ;
 
-	var article = new Post(req.body),
-		accessToken = req.user.additionalProvidersData.facebook.accessToken
-	;
-
-	FB.setAccessToken(accessToken);
-	FB.apiAsync('me/feed', 'post', {
-		message: req.body.content
-	}).catch(function(data) {
-		console.log(data);
-	});
-
-	article.user = req.user;
-
-	article.save(function(err) {
-		if (err) {
-			return res.status(400).send({
-				message: errorHandler.getErrorMessage(err)
-			});
-		} else {
-			res.json(article);
-		}
-	});
+    postr.post('all', req.body.content).then(function() {
+        article.user = req.user;
+        article.save(function(err) {
+            if (err) {
+                return res.status(400).send({
+                    message: errorHandler.getErrorMessage(err)
+                });
+            } else {
+                res.json(article);
+            }
+        });
+    }).catch(function(err) {
+        return res.status(400).send({
+            message: 'Error posting some messages: ' + err.error.message
+        });
+    });
 };
