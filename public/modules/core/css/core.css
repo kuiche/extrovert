@@ -1,7 +1,8 @@
 /*~~~~~~~~~~ DEFAULTS ~~~~~~~~~~*/
-body {
+html, body {
 	color: #D3D3D3;
 	background-color: #272822;
+	font-family: "Open Sans", sans-serif;
 }
 
 h1,

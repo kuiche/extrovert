@@ -52,6 +52,10 @@ ApplicationConfiguration.registerModule('core');
 'use strict';
 
 // Use Applicaion configuration module to register a new module
+ApplicationConfiguration.registerModule('experements');
+'use strict';
+
+// Use Applicaion configuration module to register a new module
 ApplicationConfiguration.registerModule('shittr');
 'use strict';
 
@@ -373,6 +377,28 @@ angular.module('core').service('Menus', [
 		//Adding the topbar menu
 		this.addMenu('topbar');
 	}
+]);
+'use strict';
+
+// Setting up route
+angular.module('experements').config(['$stateProvider', '$urlRouterProvider',
+    function($stateProvider, $urlRouterProvider) {
+
+        // Home state routing
+        $stateProvider.
+        state('experements', {
+            url: '/experements',
+            templateUrl: 'modules/experements/views/list.client.view.html'
+        });
+    }
+]);
+'use strict';
+
+angular.module('experements').controller('ExperementController', ['$scope', '$stateParams', '$location', 'Authentication', 'Posts',
+    function($scope, $stateParams, $location, Authentication, Posts) {
+        $scope.authentication = Authentication;
+        $scope.user = Authentication.user;
+    }
 ]);
 'use strict';
 
