@@ -1,3 +1,63 @@
+/*~~~~~~~~~~ DEFAULTS ~~~~~~~~~~*/
+body {
+	color: #D3D3D3;
+	background-color: #272822;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	color: #F92672;
+}
+
+a, a:hover, a:visited {
+	color: #A6E22E;
+}
+
+a:visited {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+/*~~~~~~~~~~ BOOTSTRAP MODIFICATIONS ~~~~~~~~~~*/
+.container-fluid {
+	padding: 0;
+}
+
+.nav-main {
+	border-top: 1px solid #fff;
+}
+
+.nav .open > a{
+	color: #A6E22E;
+}
+
+.nav > li > a:hover, .nav > li > a:focus, .nav .open > a:hover, .nav .open > a:focus {
+	background-color: inherit;
+	text-decoration: underline;
+}
+
+.jumbotron h1 {
+	color: #F92672;
+}
+
+.main-header, .jumbotron {
+	background-color: #050600;
+	margin-bottom: 0;
+}
+
+.navbar-header .navbar-toggle .icon-bar {
+    background-color: #D3D3D3;
+}
+
+/*~~~*/
+
 .content {
 	margin-top: 50px;
 }
