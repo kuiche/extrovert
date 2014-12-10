@@ -201,15 +201,11 @@ angular.module('core').controller('HeaderController', ['$scope', 'Authentication
 ]);
 'use strict';
 
-angular.module('core').controller('HomeController', ['$scope', 'Authentication', '$location', 'Posts',
-	function($scope, Authentication, $location) {
+angular.module('core').controller('HomeController', ['$scope', 'Authentication',
+	function($scope, Authentication) {
 		// This provides Authentication context.
-		$scope.authentication = Authentication;
-
-		// Redirect to login
-		if (!$scope.authentication.user) $location.path('/signin');
-
-		$scope.user = Authentication.user;
+        $scope.authentication = Authentication;
+        $scope.user = Authentication.user;
 	}
 ]);
 'use strict';
@@ -397,6 +393,9 @@ angular.module('shittr').config(['$stateProvider', '$urlRouterProvider',
 angular.module('shittr').controller('ShittrController', ['$scope', '$stateParams', '$location', 'Authentication', 'Posts',
 	function($scope, $stateParams, $location, Authentication, Posts) {
 		$scope.authentication = Authentication;
+        // Redirect to login
+        if (!$scope.authentication.user) $location.path('/signin');
+        $scope.user = Authentication.user;
 
 		$scope.find = function() {
 			$scope.posts = Posts.query();
