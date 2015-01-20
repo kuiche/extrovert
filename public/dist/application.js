@@ -52,7 +52,7 @@ ApplicationConfiguration.registerModule('core');
 'use strict';
 
 // Use Applicaion configuration module to register a new module
-ApplicationConfiguration.registerModule('experements');
+ApplicationConfiguration.registerModule('experiments');
 'use strict';
 
 // Use Applicaion configuration module to register a new module
@@ -381,20 +381,20 @@ angular.module('core').service('Menus', [
 'use strict';
 
 // Setting up route
-angular.module('experements').config(['$stateProvider', '$urlRouterProvider',
+angular.module('experiments').config(['$stateProvider', '$urlRouterProvider',
     function($stateProvider, $urlRouterProvider) {
 
         // Home state routing
         $stateProvider.
-        state('experements', {
-            url: '/experements',
-            templateUrl: 'modules/experements/views/list.client.view.html'
+        state('experiments', {
+            url: '/experiments',
+            templateUrl: 'modules/experiments/views/list.client.view.html'
         });
     }
 ]);
 'use strict';
 
-angular.module('experements').controller('ExperementController', ['$scope', '$stateParams', '$location', 'Authentication', 'Posts',
+angular.module('experiments').controller('ExperementController', ['$scope', '$stateParams', '$location', 'Authentication', 'Posts',
     function($scope, $stateParams, $location, Authentication, Posts) {
         $scope.authentication = Authentication;
         $scope.user = Authentication.user;
