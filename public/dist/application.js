@@ -53,6 +53,12 @@ ApplicationConfiguration.registerModule('core');
 
 // Use Applicaion configuration module to register a new module
 ApplicationConfiguration.registerModule('experiments');
+
+'use strict';
+
+// Use Applicaion configuration module to register a new module
+ApplicationConfiguration.registerModule('portfolio');
+
 'use strict';
 
 // Use Applicaion configuration module to register a new module
@@ -384,7 +390,7 @@ angular.module('core').service('Menus', [
 angular.module('experiments').config(['$stateProvider', '$urlRouterProvider',
     function($stateProvider, $urlRouterProvider) {
 
-        // Home state routing
+        // State routing
         $stateProvider.
         state('experiments', {
             url: '/experiments',
@@ -392,6 +398,7 @@ angular.module('experiments').config(['$stateProvider', '$urlRouterProvider',
         });
     }
 ]);
+
 'use strict';
 
 angular.module('experiments').controller('ExperementController', ['$scope', '$stateParams', '$location', 'Authentication', 'Posts',
@@ -400,6 +407,31 @@ angular.module('experiments').controller('ExperementController', ['$scope', '$st
         $scope.user = Authentication.user;
     }
 ]);
+
+'use strict';
+
+// Setting up route
+angular.module('portfolio').config(['$stateProvider', '$urlRouterProvider',
+    function($stateProvider, $urlRouterProvider) {
+
+        // State routing
+        $stateProvider.
+        state('portfolio', {
+            url: '/portfolio',
+            templateUrl: 'modules/portfolio/views/list.client.view.html'
+        });
+    }
+]);
+
+'use strict';
+
+angular.module('portfolio').controller('PortfolioController', ['$scope', '$stateParams', '$location', 'Authentication', 'Posts',
+    function($scope, $stateParams, $location, Authentication, Posts) {
+        $scope.authentication = Authentication;
+        $scope.user = Authentication.user;
+    }
+]);
+
 'use strict';
 
 // Setting up route

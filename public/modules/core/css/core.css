@@ -45,7 +45,9 @@ a:hover {
 	text-decoration: underline;
 }
 
-.jumbotron h1 {
+.jumbotron span {
+	font-size: 4em;
+	font-weight: bold;
 	color: #F92672;
 }
 
