@@ -4,7 +4,7 @@
 angular.module('experiments').config(['$stateProvider', '$urlRouterProvider',
     function($stateProvider, $urlRouterProvider) {
 
-        // Home state routing
+        // State routing
         $stateProvider.
         state('experiments', {
             url: '/experiments',
