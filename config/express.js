@@ -112,49 +112,48 @@ module.exports = function(db) {
 	app.use(helmet.ienoopen());
 	app.disable('x-powered-by');
 
-	// Setting the app router and static folder
-	app.use(express.static(path.resolve('./public')));
+    // Setup ghost. Register this first!
+    ghost({
+        config: path.join(__dirname, 'ghost.js')
+    }).then(function (ghostServer) {
+        app.use(ghostServer.config.paths.subdir, ghostServer.rootApp);
 
-	// Globbing routing files
-	config.getGlobbedFiles('./app/routes/**/*.js').forEach(function(routePath) {
-		require(path.resolve(routePath))(app);
-	});
+        ghostServer.start(app);
+    }).then(function() {
+        // Setting the app router and static folder
+        app.use(express.static(path.resolve('./public')));
 
-	// Assume 'not found' in the error msgs is a 404. this is somewhat silly, but valid, you can do whatever you like, set properties, use instanceof etc.
-	app.use(function(err, req, res, next) {
-		// If the error object doesn't exists
-		if (!err) return next();
+        // Globbing routing files
+        config.getGlobbedFiles('./app/routes/**/*.js').forEach(function(routePath) {
+            require(path.resolve(routePath))(app);
+        });
 
-		// Log it
-		console.error(err.stack);
+        // Assume 'not found' in the error msgs is a 404. this is somewhat silly, but valid, you can do whatever you like, set properties, use instanceof etc.
+        app.use(function(req, res) {
+            app.use(function(req, res) {
+                res.status(404).render('404', {
+                    url: req.originalUrl,
+                    error: 'Not Found'
+                });
+            });
+        });
+        app.use(function(err, req, res, next) {
+            // If the error object doesn't exists
+            if (!err) return next();
 
-		// Error page
-		res.status(500).render('500', {
-			error: err.stack
-		});
-	});
+            // Log it
+            console.error(err.stack);
 
-	// Setup ghost
-	ghost({
-		config: path.join(__dirname, 'ghost.js')
-	}).then(function (ghostServer) {
-		app.use(ghostServer.config.paths.subdir, ghostServer.rootApp);
+            // Error page
+            res.status(500).render('500', {
+                error: err.stack
+            });
+        });
 
-	    ghostServer.start(app);
-	})
-	// 404 MUST happen after everything. In this instance 
-	// it's neccessary to wrap in a promise to keep it AFTER Ghost 
-	.then(function(req, res) {
-		app.use(function(req, res) {
-			res.status(404).render('404', {
-				url: req.originalUrl,
-				error: 'Not Found'
-			});
-		});
-	});
+    });
 
-	if (process.env.NODE_ENV === 'secure') {
-		// Log SSL usage
+    if (process.env.NODE_ENV === 'secure') {
+        // Log SSL usage
 		console.log('Securely using https protocol');
 
 		// Load SSL key and certificate

@@ -36,7 +36,7 @@
 	<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400">
 
 	<!--Application CSS Files-->
-	{% for cssFile in cssFiles %}<link rel="stylesheet" href="{{cssFile}}">{% endfor %}
+	{% for cssFile in cssFiles %}<link rel="stylesheet" href="/{{cssFile}}">{% endfor %}
 
 	<!-- HTML5 Shim -->
 	<!--[if lt IE 9]>
@@ -58,7 +58,7 @@
 	</script>
 
 	<!--Application JavaScript Files-->
-	{% for jsFile in jsFiles %}<script type="text/javascript" src="{{jsFile}}"></script>{% endfor %} 
+	{% for jsFile in jsFiles %}<script type="text/javascript" src="/{{jsFile}}"></script>{% endfor %} 
 
 	{% if process.env.NODE_ENV === 'development' %}
 	<!--Livereload script rendered -->
