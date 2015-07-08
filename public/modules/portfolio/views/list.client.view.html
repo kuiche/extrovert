@@ -1,14 +1,44 @@
-<section data-ng-controller="ExperementController">
-	<h1>My potfolio!</h1>
+<section data-ng-controller="ExperementController" class="portfolio">
+	<h1>Portfolio</h1>
 	<p>
-		This section is a showcase of projects I have been a part of. Sites to be included:
-		<ul>
-			<li><a href="//www.message.co.uk/mothership/">Mothership Ecommerce platform</a></li>
-			<li><a href="//tonicuk.com">Tonic</a></li>
-			<li><a href="//themountainfactor.com">The Mountain Factor</a></li>
-			<li><a href="//realstarsarerare.com">RealStarsAreRare</a></li>
-			<li><a href="//junkclub.com">Junk Club</a></li>
-		</ul>
+		This section is a showcase of projects I have completed or been a major part of:
 	</p>
-	<p>Check back in a week or so when I have some of this craziness sorted.</p>
+	
+	<h2 id="mothership">
+		<a href="//mothership.ec">
+			Mothership Ecommerce platform
+		</a>
+	</h2>
+	<p>
+		Mothership is an open source Ecommerce platform built by Message Digital Designs Ltd. Mothership has developed massively since I joined the team and I am proud play a major part in designing and developing it.
+	</p>
+	<p>
+		I have also used Mothership to build the backend for a number of sites such as <a href="//iffleyroad.com">Iffley Road</a>, <a href="//shop-stoneham.com">Stoneham</a> and <a href="//tonicuk.com">Tonic</a>.
+	</p>
+	<h2 id="dissertation">
+		<a href="#">Dissertation: Distributed Virtual World</a>
+	</h2>
+	<p>
+		For my 3rd year University dissertation I created a 2D distributed virtual world in Java. This project recursively split the world up into smaller and smaller squares based on load and assigned them to peers. A DHT (<a href="https://en.wikipedia.org/wiki/Chord_(peer-to-peer)">Chord</a>) was used for region lookup.
+	</p>
+	<p>
+		The project was successful in demonstrating that the methods used were feasble for real word usage and that offloading regions would significantly reduce the load for each individual node.
+	</p>
+
+	<h2>
+		<a href="//bbq-source.appspot.com">BBQ Source</a>
+	</h2>
+	<p>
+		BBQ Source was a group University assignment using Google App Engines's Python integration. It was designed as a collaborative code editor, one may sign up with their Google account create a project, create a group, assign groups to projects etc. We used <a href="https://togetherjs.com/">TogetherJS</a> to allow real time collaboration.
+	</p>
+	<p>
+		This was a fun project though it made me learn a couple of lessons about JavaScript and TogetherJS the hard way.
+	</p>
+	<ol>
+		<li>You can't run two instances of TogetherJS on the same page.</li>
+		<li>An IFrame does NOT count as a new page</li>
+	</ol>
+	<p>
+		For these two reasons, collaboration is very wonky.
+	</p>
 </section>

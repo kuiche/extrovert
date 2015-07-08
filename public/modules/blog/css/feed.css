@@ -1,0 +1,13 @@
+.blog-feed article>h1 {
+	font-size: 20px;
+}
+
+.blog-feed ul {
+	margin: 0;
+}
+
+.blog-feed li {
+	list-style-type: none;
+	border-bottom: 1px solid white;
+	margin-bottom: 20px;
+}

@@ -1,0 +1,10 @@
+<aside ng-controller="FeedController" class="blog-feed">
+	<ul>
+		<li ng-repeat="feed in feeds | filter:filterText">
+			<article>
+				<h1><a href="{{feed.link}}">{{feed.title}}</a></h1>
+				<p>{{feed.contentSnippet}}</p>
+			</article>
+		</li>
+	</ul>
+</aside>
